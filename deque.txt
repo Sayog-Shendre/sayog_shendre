@@ -1,0 +1,39 @@
+from collection import deque 
+class socialnetwork: 
+    def __initi__(self):
+self.network={}
+ def add_connection(self, userid1, userid2):
+if user1 not in self.network:
+self.network[userid1]=set()
+if user2 not in self.network:                O(1)       O(V+E)
+self.network[userid2]=set()
+self.network[userid1].add(userid2)
+self.network[userid2].add(userid1)
+
+def get_degree_of_sepertion_bd(self,start_user, end_user):
+       if start_user not in self.network or end_user not in self.network:
+            return -1
+       if start_user == end_user: 
+            return 0
+       queue_forword= deque([(start_user,0)])             O(1)
+       queue_backward= deque([(end_user,0)])
+
+       visited_forward={start_user: 0}
+       visited_backward={end_user: 0}
+       while queue_forward and queue_backward:
+             current_forward, dist_frward=queue_forward.popleft()
+                  for neighbor in self.network.get(current_forward, set()):       O(V)
+                      if neighbor not in visited_forward:
+                         visited_forward[neighbhor]=dist_forward+1
+         queue_forward.ppend((neighbor, dist_forward+1))
+                if neibhor in visited_backward:
+                    return visited_forward[neigbhor]+visited_backward[neigbhor]   O(E_f+E_b)
+             current_backward, dist_frward=queue_backward.popleft()
+                  for neighbor in self.network.get(current_backward, set()):
+                      if neighbor not in visited_backward:
+                         visited_backward[neighbhor]=dist_backward+1
+         queue_backward.append((neighbor, dist_backward+1))
+                if neibhor in visited_forward:                                         O(1)
+                    return visited_forward[neigbhor]+visited_backward[neigbhor]
+    return -1    O(1)
+
